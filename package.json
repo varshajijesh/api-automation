@@ -1,0 +1,24 @@
+{
+  "name": "bddcucumber",
+  "version": "1.0.0",
+  "description": "cucumber framework",
+  "keywords": [
+    "cypress"
+  ],
+  "license": "ISC",
+  "author": "varsha",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "cypress": "^15.7.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-xpath": "^2.0.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "step_definitions": "cypress/e2e"
+  }
+}
