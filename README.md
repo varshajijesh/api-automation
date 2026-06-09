@@ -24,14 +24,15 @@ https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=false
 ## How to Run
 
 ### Install dependencies 
-npm init -y  - This creates a package.json file.
+
 npm install cypress --save-dev - install cypress
-npm install cypress-cucumber-preprocessor --save-dev - install cucumber
 
 ### Run tests (headless)
+
 npm test
 
 ### Open Cypress UI
+
 npx cypress open
 ---
 
@@ -40,5 +41,6 @@ npx cypress open
 - Uses `cy.request()` for API validation
 - Validates HTTP status code
 - Extracts JSON response body
+- Uses 'cy.wrap()' to store api response body
 - Uses array `.find()` for Promotions validation
 - Clean assertions per acceptance criteria
