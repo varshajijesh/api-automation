@@ -34,6 +34,7 @@ npm test
 ### Open Cypress UI
 
 npx cypress open
+
 ---
 
 ## Test Approach
