@@ -3,6 +3,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
+    baseUrl: 'https://api.tmsandbox.co.nz',
     setupNodeEvents(on, config) {
        on('file:preprocessor', cucumber())
     },

@@ -1,22 +1,35 @@
-import {Given, When, Then} from "cypress-cucumber-preprocessor/steps";
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
-Given ("Test first Request", ()=>{
-    
-  cy.request('GET', 'https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=false') .then((response) => { 
-    expect(response.status).to.equal(200); 
-  
-   cy.writeFile('cypress/fixtures/example.json', response.body);
+Given("Send a GET request to the endpoint", () => {
 
-    const body = response.body;
+  const CATEGORY_ID = '6327';
+  cy.request(
+    'GET',
+    `/v1/Categories/${CATEGORY_ID}/Details.json?catalogue=false`
+  ).then((response) => {
+    expect(response.status).to.equal(200);
 
-      expect(body.Name).to.eq("Carbon credits");
+    cy.writeFile('cypress/fixtures/example.json', response.body);
+    cy.wrap(response).as("categoryResponse");
 
-      expect(body.CanRelist).to.eq(true);
-      
-      const promo = body.Promotions.find((g) => g.Name === "Gallery");
-       expect(promo).to.exist;
-       expect(promo.Description)
+  });
+
+  Then("Validate Name, CanRelist, Gallery promotion description", () => {
+
+    cy.get("@categoryResponse").then((response) => {
+      const { Name, CanRelist, Promotions } = response.body;
+
+      //Acceptance criteria 1 : Validating Name
+      expect(Name).to.eq("Carbon credits");
+
+      //Acceptance criteria 2 : Validating CanRelist
+      expect(CanRelist).to.eq(true);
+
+       //Acceptance criteria 3 : Validating Gallery promotion description
+      const promo = Promotions.find((g) => g.Name === "Gallery");
+      expect(promo).to.exist;
+      expect(promo.Description)
         .to.include("Good position in category");
-    cy.log ("PASSED");
-  })
+    })
+  });
 });

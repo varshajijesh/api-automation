@@ -1,4 +1,5 @@
-Feature: API testing
+Feature: Carbon Credits API Validation
 
-Scenario: First Request
-Given Test first Request
+Scenario: Validate Carbon Credits category details
+Given Send a GET request to the endpoint
+Then Validate Name, CanRelist, Gallery promotion description
