@@ -27,11 +27,11 @@ https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=false
 
 npm install cypress --save-dev
 
-### Run tests (headless)
+### To Run tests (headless)
 
-npm test
+npx cypress run
 
-### Open Cypress UI
+### To Run test in Cypress UI
 
 npx cypress open
 
